@@ -1,0 +1,102 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile with onboarding responses and target metrics",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "The firebase auth user uid" },
+        "email": { "type": "string", "description": "User email address" },
+        "name": { "type": "string", "description": "Display name of the user" },
+        "age": { "type": "number", "description": "Age of the user" },
+        "height": { "type": "number", "description": "Height in cm" },
+        "goal": { "type": "string", "description": "Primary goal selected" },
+        "currentWeight": { "type": "number", "description": "Current weight in kg" },
+        "goalWeight": { "type": "number", "description": "Goal weight in kg" },
+        "targetDate": { "type": "string", "description": "Target date string" },
+        "dreamSelf": { "type": "string", "description": "Description of dream self person" },
+        "completedOnboarding": { "type": "boolean", "description": "True if onboarding flow is complete" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Record creation time" },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Record update time" }
+      },
+      "required": ["uid", "email", "name", "completedOnboarding"]
+    },
+    "Habit": {
+      "title": "Habit",
+      "description": "User habit tracking configuration",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique habit ID" },
+        "userId": { "type": "string", "description": "Owner userId" },
+        "title": { "type": "string", "description": "Name of the habit" },
+        "category": { "type": "string", "description": "Category or type" },
+        "isCustom": { "type": "boolean", "description": "Custom habit tag" },
+        "streak": { "type": "number", "description": "Current daily streak" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Timestamp created" }
+      },
+      "required": ["id", "userId", "title", "createdAt"]
+    },
+    "HabitLog": {
+      "title": "HabitLog",
+      "description": "Record of a habit marked completed on a calendar date",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Composite ID: uid_habitId_date" },
+        "userId": { "type": "string", "description": "User identifier" },
+        "habitId": { "type": "string", "description": "Habit identifier" },
+        "date": { "type": "string", "description": "ISO Date (YYYY-MM-DD)" },
+        "completed": { "type": "boolean", "description": "Completion state" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Log timestamp" }
+      },
+      "required": ["id", "userId", "habitId", "date", "completed"]
+    },
+    "WeightLog": {
+      "title": "WeightLog",
+      "description": "Weekly weight logging timeline",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique weight entry ID" },
+        "userId": { "type": "string", "description": "User identifier" },
+        "weight": { "type": "number", "description": "Logged weight in kg" },
+        "date": { "type": "string", "description": "ISO Date (YYYY-MM-DD)" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Log timestamp" }
+      },
+      "required": ["id", "userId", "weight", "date", "createdAt"]
+    },
+    "VisionBoardItem": {
+      "title": "VisionBoardItem",
+      "description": "Image card saved to the user's dream self vision board",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique image item ID" },
+        "userId": { "type": "string", "description": "User identifier" },
+        "imageUrl": { "type": "string", "description": "Base64 data URL of uploaded image" },
+        "caption": { "type": "string", "description": "Optional title/caption" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Created timestamp" }
+      },
+      "required": ["id", "userId", "imageUrl", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "/habits/{habitId}": {
+      "schema": "Habit",
+      "description": "Habits definition"
+    },
+    "/habit_logs/{logId}": {
+      "schema": "HabitLog",
+      "description": "Daily completions of habits"
+    },
+    "/weight_logs/{weightId}": {
+      "schema": "WeightLog",
+      "description": "Timeline weight readings"
+    },
+    "/vision_board/{itemId}": {
+      "schema": "VisionBoardItem",
+      "description": "Dream vision board imagery"
+    }
+  }
+}

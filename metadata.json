@@ -1,0 +1,6 @@
+{
+  "name": "GlowUp Diary",
+  "description": "Become the version of you that you've always dreamed of. A premium, mindful habit, weight, and vision board companion.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

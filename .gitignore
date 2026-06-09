@@ -1,0 +1,30 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+
+# Caches
+.vite/
+.parcel-cache/
+.eslintcache
+.npm/
+
+# IDEs
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# Firebase logs and temporary folders
+.firebase/
+*-debug.log
+*.firebase.json
+firebase-debug.log
+firestore-debug.log
